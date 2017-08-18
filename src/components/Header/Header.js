@@ -1,13 +1,6 @@
-import React, {
-  Component
-} from 'react'
-import {
-  findDomNode
-} from 'react-dom'
-import {
-  Button,
-  Input
-} from 'antd'
+import React, { Component } from 'react'
+import ReactDOM, { findDomNode } from 'react-dom'
+import { Button, Input } from 'antd'
 import PropTypes from 'prop-types'
 
 class Header extends Component {
@@ -17,17 +10,35 @@ class Header extends Component {
   }
   constructor(props) {
     super(props)
-    this.handleKeyUp = this.handleKeyUp.bind(this)
-  }
-
-  handleKeyUp(e) {
-    if (e.keyCode !== '13') {
-
+    this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      inputValue: ''
     }
   }
 
   handleClick(e) {
     e.preventDefault()
+    const text = this.state.inputValue.trim()
+    if (text.length > 20) {
+      alert('请输入20字以内')
+    } else if (text === '') {
+      alert('不许为空')
+    } else {
+      // TODO:
+      // this.props.onAdd(text)
+      console.log(text)
+      this.setState({
+        inputValue: ''
+      })
+    }
+  }
+  
+  handleChange(e) {
+    e.preventDefault()
+    this.setState({
+      inputValue: e.target.value
+    })
   }
 
   render() {
@@ -36,33 +47,12 @@ class Header extends Component {
         <section >
           <form>
             <label> 备忘录 </label>
-            <Input onKeyUp = {
-              this.handleKeyUp}
-              ref = "inputnew"
-              type = "text"
-              placeholder = "新建事项(20字以内)"
-              defaultValue = {
-                this.props.text
-              }
-              id = "new-todo"
-              style = {
-                {
-                  width: '40%',
-                }
-              }
-            />
+            <Input type = "text" ref={(Input) => this.newInput = Input} value={this.state.inputValue}
+              placeholder = "新建事项(20字以内)" defaultValue = {this.props.text} onChange={this.handleChange} onPressEnter={this.handleClick} autoComplete="off" 
+              id = "new-todo" style = {{ width: '40%' }} />
             <div>
-              <Button
-                type="default"
-                ghost
-                onClick={e => this.handleClick(e)}>添加
-              </Button>
-              <Button
-                type="default"
-                ghost
-                icon="search"
-                onClick={e => this.handleSearch(e)}>搜索
-              </Button>
+              <Button type="default" ghost onClick={e => this.handleClick(e)}>添加</Button>
+              <Button type="default" ghost icon="search" onClick={e => this.handleSearch(e)}>搜索</Button>
             </div>
           </form>
         </section>

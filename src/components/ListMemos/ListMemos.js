@@ -5,9 +5,9 @@ import Memo from '../Memo/Memo'
 
 class ListMemos extends Component {
   static propTypes = {
-    memoNums: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    list: PropTypes.arrayOf(PropTypes.shape({
+    memoNums: PropTypes.number.isRequired, // 列表数量
+    title: PropTypes.string.isRequired, // 展示名称
+    list: PropTypes.arrayOf(PropTypes.shape({ // 列表具体信息
       content: PropTypes.string.isRequired
     })).isRequired,
   }
