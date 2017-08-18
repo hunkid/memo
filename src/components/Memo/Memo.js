@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Checkbox } from 'antd'
+import { Row, Col, Checkbox, Icon, Button } from 'antd'
 import PropTypes from 'prop-types'
 import './Memo.css'
 
@@ -21,8 +21,10 @@ class Memo extends Component {
           <Col span={1}>
             <Checkbox />
           </Col>
-          <Col>{this.props.content}</Col>
-          <Col></Col>  
+          <Col span={20}>{this.props.content}</Col>
+          <Col span={1}>
+            <Button icon="delete" type="primary"/>
+          </Col>  
         </Row>
       </div>
     )
