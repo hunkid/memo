@@ -47,7 +47,7 @@ const todolist = (state = todos, action) => {
       ]
       localStorage.setItem('todos', JSON.stringify(newState))
       return newState
-    case types.CAHNGE_DONE_TO_DOING:
+    case types.CHANGE_DONE_TO_DOING:
       newState = [
         ...state.slice(0, action.index),
         {
@@ -84,3 +84,5 @@ const todolist = (state = todos, action) => {
       return state
   }
 }
+
+export default todolist

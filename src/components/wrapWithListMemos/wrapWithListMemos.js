@@ -6,38 +6,42 @@
 // import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ListMemos from '../ListMemos/ListMemos'
-/**
- * @param {Number} doneFlag 1:新建，2:正则进行，3：完成
- */
-const wrapWithListMemos = (doneFlag) => {
-  var title = '';
-  switch (doneFlag) {
-    case 1: 
-      title = '新建事项'
-      break;
-    case 2:
-      title = '正在进行中'
-      break;
-    case 3:
-      title = '已完成事项'
-      break;
-    default:
-      break;
-  }
-  class NewComponent extends Component {
-    constructor () {
-      super()
-      this.state = {
-        doneFlag 
-      }
+
+export default class NewComponent extends Component {
+  render () {
+    let { doneFlag, todolist, title, onDel } = this.props
+    todolist = todolist || []
+    let list = []
+    console.log(todolist)
+    switch (doneFlag) { // 1:新建，2:正则进行，3：完成
+      case 1:
+        todolist.forEach((item) => {
+          if (item.istodo) {
+            list = [...list, item]
+          }
+        })
+        break;
+      case 2:
+        todolist.forEach((item) => {
+          if (item.isdoing) {
+            list = [...list, item]
+          }
+        })
+        break;
+      case 3:
+        todolist.forEach((item) => {
+          if (item.isdone) {
+            list = [...list, item]
+          }
+        })
+        break;
+      default:
+        break;
     }
-    render () { // TODO:
-      return (
-        <ListMemos title={title}/>
-      )
-    }
+    return (
+      <ListMemos title={title} list={list} memoNums={list.length} onDel={onDel}/>
+    )
   }
-  return NewComponent
 }
 
-export default wrapWithListMemos
+

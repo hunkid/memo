@@ -1,8 +1,5 @@
-// modules/NavLink.js
 import React from 'react'
-import {
-  Link
-} from 'react-router'
+import { Link } from 'react-router'
 
 class NavLink extends React.Component {
   render() {
@@ -10,8 +7,7 @@ class NavLink extends React.Component {
       <Link
         { ...this.props }
         activeClassName = "active"
-        onlyActiveOnIndex = { true }
-      />
+        onlyActiveOnIndex = { true } />
     )
   }
 }

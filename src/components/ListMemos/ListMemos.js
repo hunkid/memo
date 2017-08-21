@@ -8,24 +8,17 @@ class ListMemos extends Component {
     memoNums: PropTypes.number.isRequired, // 列表数量
     title: PropTypes.string.isRequired, // 展示名称
     list: PropTypes.arrayOf(PropTypes.shape({ // 列表具体信息
-      content: PropTypes.string.isRequired
+      isdoing:PropTypes.bool.isRequired,
+      isdone:PropTypes.bool.isRequired,
+      istodo:PropTypes.bool.isRequired,
+      todo:PropTypes.string.isRequired
     })).isRequired,
+    onDel: PropTypes.func.isRequired
   }
   static defaultProps = {
-    memoNums: 2,
+    memoNums: 0,
     title: '事项',
-    list: [
-      {
-        content: '回家吃饭'
-      }, 
-      {
-        content: '回家喝汤'
-      }
-    ]
-  }
-
-  constructor (props) {
-    super(props)
+    list: []
   }
 
   render () {
@@ -33,11 +26,10 @@ class ListMemos extends Component {
     const panelHeader = (
       <Row>
         <Col span={22}>
-            <h3>{this.props.title}</h3>
+          <h3>{this.props.title}</h3>
         </Col>
         <Col span={2}>
-            <Button size="small" shape="circle">{this.props.memoNums}
-            </Button>
+          <Button size="small" shape="circle">{this.props.memoNums}</Button>
         </Col>
       </Row>
     )
@@ -48,7 +40,7 @@ class ListMemos extends Component {
             maxWidth: '800px',
             margin: '0 auto'}}>
             <Panel header={panelHeader} key="1">
-              {this.props.list.map((item, i)=> <Memo content={item.content} key={i}/>)}
+              {this.props.list.map((item, i) => <Memo content={item.todo} key={i} onDel={this.props.onDel} index={i} />)}
             </Panel>
           </Collapse>
         </main>

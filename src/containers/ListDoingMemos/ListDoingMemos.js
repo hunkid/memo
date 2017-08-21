@@ -1,5 +1,14 @@
-import wrapWithListMemos from '../../components/wrapWithListMemos/wrapWithListMemos'
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import NewComponent from '../../components/wrapWithListMemos/wrapWithListMemos'
 
-const ListDoingMemos = wrapWithListMemos(2)
+const mapStateToProps = (state) => ({todolist: state.todolist})
 
-export default ListDoingMemos
+class ListTodoMemos extends Component {
+  render () {
+    let title = '新建事项'
+    return <NewComponent title={title} doneFlag={2} todolist={this.props.todolist} />
+  }
+}
+
+export default connect(mapStateToProps)(ListTodoMemos)

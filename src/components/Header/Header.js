@@ -25,9 +25,7 @@ class Header extends Component {
     } else if (text === '') {
       alert('不许为空')
     } else {
-      // TODO:
-      // this.props.onAdd(text)
-      console.log(text)
+      this.props.onAdd(text)
       this.setState({
         inputValue: ''
       })
