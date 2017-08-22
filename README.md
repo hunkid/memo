@@ -4,9 +4,12 @@
 
 主要技术架构：React、Redux、React-router      
 
-运行方式：
-git clone git@github.com:damonare/memos.git     
+运行方式：    
+
+git clone git@github.com:damonare/memos.git   
+
 npm install 
+
 npm run start      
 
 操作方式：
