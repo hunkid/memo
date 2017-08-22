@@ -1,14 +1,20 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import NewComponent from '../../components/wrapWithListMemos/wrapWithListMemos'
-
+import ListMemos from '../../components/ListMemos/ListMemos'
+import { changeDoneToDoing, deleteTodo } from '../../actions'
 const mapStateToProps = (state) => ({todolist: state.todolist})
-
-class ListTodoMemos extends Component {
-  render () {
-    let title = '新建事项'
-    return <NewComponent title={title} doneFlag={3} todolist={this.props.todolist} />
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDel: (index) => dispatch(deleteTodo(index)),
+    toDoing: (index) => dispatch(changeDoneToDoing(index))
   }
 }
 
-export default connect(mapStateToProps)(ListTodoMemos)
+class ListDoneMemos extends Component {
+  render () {
+    let title = '已完成'
+    return <ListMemos title={title} doneFlag={3} {...this.props} type={'done-list'} />
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListDoneMemos)

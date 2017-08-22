@@ -9,10 +9,10 @@ import ListMemos from '../ListMemos/ListMemos'
 
 export default class NewComponent extends Component {
   render () {
-    let { doneFlag, todolist, title, onDel } = this.props
+    let { doneFlag, todolist, title, onDel, toDoing, toDone, toTodo } = this.props
     todolist = todolist || []
-    let list = []
-    console.log(todolist)
+    let list = [], type
+    // console.log(todolist)
     switch (doneFlag) { // 1:新建，2:正则进行，3：完成
       case 1:
         todolist.forEach((item) => {
@@ -20,6 +20,7 @@ export default class NewComponent extends Component {
             list = [...list, item]
           }
         })
+        type = 'todo-list'
         break;
       case 2:
         todolist.forEach((item) => {
@@ -27,6 +28,7 @@ export default class NewComponent extends Component {
             list = [...list, item]
           }
         })
+        type = 'doing-list'
         break;
       case 3:
         todolist.forEach((item) => {
@@ -34,12 +36,13 @@ export default class NewComponent extends Component {
             list = [...list, item]
           }
         })
+        type = 'done-list'
         break;
       default:
         break;
     }
     return (
-      <ListMemos title={title} list={list} memoNums={list.length} onDel={onDel}/>
+      <ListMemos title={title} list={list} memoNums={list.length} type={type} onDel={onDel} toDoing={toDoing} toDone={toDone} toTodo={toTodo}/>
     )
   }
 }

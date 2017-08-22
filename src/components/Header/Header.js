@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM, { findDomNode } from 'react-dom'
 import { Button, Input } from 'antd'
 import PropTypes from 'prop-types'
 
@@ -50,7 +49,6 @@ class Header extends Component {
               id = "new-todo" style = {{ width: '40%' }} />
             <div>
               <Button type="default" ghost onClick={e => this.handleClick(e)}>添加</Button>
-              <Button type="default" ghost icon="search" onClick={e => this.handleSearch(e)}>搜索</Button>
             </div>
           </form>
         </section>
